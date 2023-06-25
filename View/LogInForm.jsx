@@ -1,6 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react'
-import { StyleSheet, Text, View, TextInput, Button, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity} from 'react-native';
+
+const Stack = createStackNavigator();
 
 const LogInForm = ({navigation}) => {
     const [nickname, setNickname] = useState('');
@@ -27,7 +29,6 @@ const LogInForm = ({navigation}) => {
             setError("")
             console.log("Nickname: " + nickname)
             console.log("Password: " + password)
-            handleOpenControls();
         }
     }
 

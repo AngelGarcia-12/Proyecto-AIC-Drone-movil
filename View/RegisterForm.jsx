@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { StatusBar } from 'expo-status-bar';
 import {StyleSheet, Text, View, TextInput, TouchableOpacity, Image} from 'react-native';
 
 const RegisterForm = () => {
@@ -27,9 +28,10 @@ const RegisterForm = () => {
 
     return (
         <View style={styles.conteiner}>
+            <StatusBar style='auto'/>
             <Text style={styles.titulo}>AIC-Drone</Text>
             <Image source={require('./img/logodron.png')}></Image>
-
+            
             <TextInput style={styles.textInput}
             placeholder='nombre'
             value={nombre}
