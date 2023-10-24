@@ -2,16 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, {useState} from 'react'
 import { StyleSheet, Text, View, TextInput, Image, TouchableOpacity} from 'react-native';
 
-const Stack = createStackNavigator();
-
 const LogInForm = ({navigation}) => {
-    const [nickname, setNickname] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
   
-    const handlePasswordChange = (text) => {
+    /*const handlePasswordChange = (text) => {
       setPassword(text);
-    };
+    };*/
 
     const handleOpenForm = () => {
         navigation.navigate('Register Form');
@@ -22,13 +20,22 @@ const LogInForm = ({navigation}) => {
     }
 
     const handleSubmit = () => {
-        if(!nickname || !password){
+        if(!email || !password){
             setError("El nombre de usuario o password no ha sido introduccido");
         }
         else{
             setError("")
-            console.log("Nickname: " + nickname)
+            setEmail('');
+            setPassword('');
+
+            console.log("Email: " + email)
             console.log("Password: " + password)
+
+            setEmail('');
+            setPassword('');
+
+            //Abrir ventana de controles de dron
+            handleOpenControls();
         }
     }
 
@@ -43,12 +50,13 @@ const LogInForm = ({navigation}) => {
                 <TextInput placeholder='user@email.com' 
                 style={styles.textInput} 
                 keyboardType='email-address'
-                value={nickname}/>
+                onChangeText={setEmail}
+                />
                 <TextInput placeholder='password' 
                 style={styles.textInput} 
                 secureTextEntry={true}
                 value={password}
-                onChangeText={handlePasswordChange}/>
+                onChangeText={setPassword}/>
                 {/* Boton de Login <TouchableOpacity></TouchableOpacity>*/}
                 {error ? <Text style={{color: 'red'}}>{error}</Text> : null}
                 <TouchableOpacity style={styles.boton} onPress={handleSubmit}>

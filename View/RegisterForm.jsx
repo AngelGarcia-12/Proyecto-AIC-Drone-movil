@@ -6,6 +6,7 @@ const RegisterForm = () => {
     //Campos para el formulario
     const [nombre, setNombre] = useState('');
     const [nickname, setNickname] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [telefono, setTelefono] = useState('');
     const [ubicacion, setUbicacion] = useState('');
@@ -13,16 +14,28 @@ const RegisterForm = () => {
 
     const handleSubmit = () => {
         //Acciones con los datos (enviar datos, guardar)
-        if(!nickname || !password){
-            setError("El nombre de usuario o password no ha sido completado, por favor llene los campos correspondientes");
+        if(!email || !password){
+            setError("El email o password no ha sido completado, por favor llene los campos correspondientes");
         }
         else{
             setError('');
+            setEmail('');
+            setPassword('');
+            
             console.log('Nombre: ' + nombre);
             console.log('Nickname: ' + nickname);
+            console.log('Email: ' + email);
             console.log('Password: ' + password);
             console.log('Telefono: ' + telefono);
             console.log('Ubicacion: ' + ubicacion);
+
+            //Restablecer sus valores para limpiar los campos
+            setNombre('');
+            setNickname('');
+            setEmail('');
+            setPassword('');
+            setTelefono('');
+            setUbicacion('');
         }
     }
 
@@ -43,6 +56,12 @@ const RegisterForm = () => {
             onChangeText={setNickname}
             />
             <TextInput style={styles.textInput}
+            placeholder='email'
+            keyboardType='email-address'
+            value={email}
+            onChangeText={setEmail}
+            />
+            <TextInput style={styles.textInput}
             placeholder='password'
             secureTextEntry = {true}
             value={password}
@@ -50,6 +69,7 @@ const RegisterForm = () => {
             />
             <TextInput style={styles.textInput}
             placeholder='telefono'
+            keyboardType='phone-pad'
             value={telefono}
             onChangeText={setTelefono}
             />
